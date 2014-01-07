@@ -224,6 +224,24 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     newJoe.maxHitPoints should be === 14
   }
 
+  it should "increase the character's hit points when level 3" in {
+    val joe = new Character(experience = 1990, baseHitPoints = 12, abilities = new Abilities(constitution = 14))
+    val sam = new Character()
+
+    val (newJoe, newSam) = joe attacks(sam, 10)
+
+    newJoe.maxHitPoints should be === 21
+  }
+
+  it should "not increase the character's hit points when not gaining a level" in {
+    val joe = new Character(experience = 1950, baseHitPoints = 12, abilities = new Abilities(constitution = 14))
+    val sam = new Character()
+
+    val (newJoe, newSam) = joe attacks(sam, 10)
+
+    newJoe.maxHitPoints should be === 14
+  }
+
   behavior of "modifier bonuses"
 
   it should "apply constitution modifier to hit points" in {

@@ -5,7 +5,11 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
   private val baseLevel = 1
 
   def level(): Int = {
-    (experience / 1000) + baseLevel
+    calculateLevel(experience)
+  }
+
+  private def calculateLevel(forExperience: Int): Int = {
+    (forExperience / 1000) + baseLevel
   }
 
   def armorClass(): Int = {
@@ -43,9 +47,16 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
   }
 
   private def gainExperience(addExperience: Int): Character = {
+    new Character(name = name, alignment = alignment, baseHitPoints = calculateBaseHitPoints(addExperience), abilities = abilities, damage = damage, experience = experience + addExperience)
+  }
 
-    val newHitPoints = baseHitPoints + 5 + asModifier(abilities.constitution)
-    new Character(name = name, alignment = alignment, baseHitPoints = newHitPoints, abilities = abilities, damage = damage, experience = experience + addExperience)
+  private def calculateBaseHitPoints(expGained: Int): Int = {
+    if (isGainingLevel(expGained)) baseHitPoints + 5 + asModifier(abilities.constitution)
+    else baseHitPoints
+  }
+
+  private def isGainingLevel(expGained: Int): Boolean = {
+    level != calculateLevel(experience + expGained)
   }
 
   private def incursDamage(newDamage: Int): Character = {
