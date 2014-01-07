@@ -1,6 +1,6 @@
 import scala.math._
 
-class Character(val name: String = "Kristen", val alignment: Alignment = Good, baseHitPoints: Int = 5, val abilities: Abilities = new Abilities(), damage: Int = 0) {
+class Character(val name: String = "Kristen", val alignment: Alignment = Good, baseHitPoints: Int = 5, val abilities: Abilities = new Abilities(), damage: Int = 0, val experience: Int = 0) {
   val baseArmorClass = 10
 
   def armorClass(): Int = {
@@ -33,8 +33,12 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
       else max(1 + asModifier(abilities.strength), 1)
     }
 
-    if (canHit(target, roll)) (this, target.incursDamage(calculateDamage(roll)))
+    if (canHit(target, roll)) (gainExperience(10), target.incursDamage(calculateDamage(roll)))
     else (this, target)
+  }
+
+  private def gainExperience(addExperience: Int): Character = {
+    new Character(name = name, alignment = alignment, baseHitPoints = baseHitPoints, abilities = abilities, damage = damage, experience = experience + addExperience)
   }
 
   private def incursDamage(newDamage: Int): Character = {

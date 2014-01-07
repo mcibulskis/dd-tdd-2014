@@ -73,6 +73,18 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     character.isAlive should be === false
   }
 
+  it should "have a default experience of 0" in {
+    val character = new Character()
+
+    character.experience should be === 0
+  }
+
+  it should "be able to have a non-default value for experience points" in {
+    val character = new Character(experience = 15)
+
+    character.experience should be === 15
+  }
+
   behavior of "attacking a character"
 
   it should "allow a character to attack another character and hit when roll equal to armor class" in {
@@ -153,6 +165,15 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val (newJoe, newSam) = joe attacks(sam, 20)
 
     newSam.hitPoints should be === 4
+  }
+
+  it should "increase the attacker's experience by 10 when the attack is successful" in {
+    val joe = new Character()
+    val sam = new Character()
+
+    val (newJoe, newSam) = joe attacks(sam, 12)
+
+    newJoe.experience should be === 10
   }
 
   behavior of "modifier bonuses"
