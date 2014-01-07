@@ -62,13 +62,13 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
   }
 
   it should "know it is dead if its hit points are 0" in {
-    val character = new Character("Joe", Evil, 0)
+    val character = new Character("Joe", Evil, damage = 5)
 
     character.isAlive should be === false
   }
 
   it should "know it is dead if its hit points are less than 0" in {
-    val character = new Character("Joe", Evil, -5)
+    val character = new Character("Joe", Evil, damage = 6)
 
     character.isAlive should be === false
   }
@@ -108,5 +108,19 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val newSam = joe attacks(sam, 20)
 
     newSam.hitPoints should be === 3
+  }
+
+  behavior of "modifier bonuses"
+
+  it should "apply constitution modifier to hit points" in {
+    val joe = new Character(abilities = new Abilities(constitution = 20))
+
+    joe.hitPoints should be === 10
+  }
+
+  it should "always have a maximum hit points of at least 1" in {
+    val joe = new Character(abilities = new Abilities(constitution = 1))
+
+    joe.maxHitPoints should be === 1
   }
 }
