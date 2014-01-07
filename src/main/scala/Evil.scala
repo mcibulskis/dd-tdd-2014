@@ -1,0 +1,3 @@
+object Evil extends Alignment {
+
+ }

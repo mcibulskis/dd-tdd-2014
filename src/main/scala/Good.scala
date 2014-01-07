@@ -1,0 +1,3 @@
+object Good extends Alignment {
+
+}

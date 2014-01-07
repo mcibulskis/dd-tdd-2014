@@ -1,0 +1,3 @@
+object Neutral extends Alignment {
+
+}
