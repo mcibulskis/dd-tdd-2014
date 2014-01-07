@@ -2,16 +2,32 @@ import org.scalatest._
 import org.scalatest.matchers.ShouldMatchers
 
 class CharacterSpec extends FlatSpec with ShouldMatchers {
-  "Character" should "have have a name" in {
+
+  behavior of "basic character attributes"
+
+  it should "have have a name" in {
 
     val character = new Character()
 
     character.name should be === "Kristen"
   }
 
-  "Character" should "be able to have a non-default name" in {
+  it should "be able to have a non-default name" in {
     val character = new Character("Joe")
 
     character.name should be === "Joe"
+  }
+
+  it should "have a default alignment" in {
+
+    val character = new Character()
+
+    character.alignment should be === "Good"
+  }
+
+  it should "be able to have a non-default alignment" in {
+    val character = new Character("Joe", "Evil")
+
+    character.alignment should be === "Evil"
   }
 }

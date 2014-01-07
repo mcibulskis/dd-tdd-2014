@@ -1,3 +1,3 @@
-class Character(val name: String = "Kristen"){
+class Character(val name: String = "Kristen", val alignment: String = "Good"){
 
 }
