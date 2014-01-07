@@ -23,14 +23,14 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
 
   def attacks(target: Character, roll: Roll20): Character = {
     def canHit(target: Character, roll: Roll20): Boolean = {
-      roll >= target.armorClass
+      (roll.roll + asModifier(abilities.strength)) >= target.armorClass
     }
 
     def isCriticalHit(roll: Int): Boolean = roll == 20
 
     def calculateDamage(roll: Int): Int = {
-      if (isCriticalHit(roll)) 2
-      else 1
+      if (isCriticalHit(roll)) max(2 + asModifier(abilities.strength)*2, 1)
+      else max(1 + asModifier(abilities.strength), 1)
     }
 
     if (canHit(target, roll)) target.incursDamage(calculateDamage(roll))

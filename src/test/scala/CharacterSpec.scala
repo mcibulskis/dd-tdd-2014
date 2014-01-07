@@ -110,6 +110,51 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     newSam.hitPoints should be === 3
   }
 
+  it should "reduce target's hit points by 2 when the attack is successful and has a strength modifier bonus of +1" in {
+    val joe = new Character(abilities = new Abilities(strength = 12))
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 10)
+
+    newSam.hitPoints should be === 3
+  }
+
+  it should "reduce target's hit points by 2 when the attack is successful only because of the strength bonus" in {
+    val joe = new Character(abilities = new Abilities(strength = 12))
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 9)
+
+    newSam.hitPoints should be === 3
+  }
+
+  it should "reduce target's hit points by 4 when the attack is a critical hit and has a strength modifier bonus of +1" in {
+    val joe = new Character(abilities = new Abilities(strength = 12))
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 20)
+
+    newSam.hitPoints should be === 1
+  }
+
+  it should "reduce hit points by 1 when attack is successful is strength modifier bonus is -5" in {
+    val joe = new Character(abilities = new Abilities(strength = 1))
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 15)
+
+    newSam.hitPoints should be === 4
+  }
+
+  it should "reduce target's hit points by 1 when attack is a critical hit and the strength modifier bonus is -5" in {
+    val joe = new Character(abilities = new Abilities(strength = 1))
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 20)
+
+    newSam.hitPoints should be === 4
+  }
+
   behavior of "modifier bonuses"
 
   it should "apply constitution modifier to hit points" in {
@@ -129,6 +174,4 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
 
     joe.armorClass should be === 5
   }
-
-  it should ""
 }
