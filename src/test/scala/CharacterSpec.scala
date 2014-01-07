@@ -49,6 +49,12 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     character.hitPoints should be === 5
   }
 
+  it should "be able to have a non-default value for hit points" in {
+    val character = new Character("Joe", Evil, 15)
+
+    character.hitPoints should be === 15
+  }
+
   behavior of "attacking a character"
 
   it should "allow a character to attack another character and hit when roll greater than armor class" in {
