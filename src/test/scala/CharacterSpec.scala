@@ -130,5 +130,5 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     joe.armorClass should be === 5
   }
 
-
+  it should ""
 }

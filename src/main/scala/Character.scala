@@ -4,7 +4,7 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
   val baseArmorClass = 10
 
   def armorClass(): Int = {
-    max(baseArmorClass + asModifier(abilities.dexterity), 1)
+    baseArmorClass + asModifier(abilities.dexterity)
   }
 
   def hitPoints(): Int = {
