@@ -55,20 +55,20 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character()
     val sam = new Character()
 
-    joe hits(sam, 20) should be === true
+    joe canHit(sam, 20) should be === true
   }
 
   it should "allow a character to attack another character and not hit when roll less than armor class" in {
     val joe = new Character()
     val sam = new Character()
 
-    joe hits(sam, 5) should be === false
+    joe canHit(sam, 5) should be === false
   }
 
   it should "allow a character to attack another character and hit when roll equal to armor class" in {
     val joe = new Character()
     val sam = new Character()
 
-    joe hits(sam, 10) should be === true
+    joe canHit(sam, 10) should be === true
   }
 }
