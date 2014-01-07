@@ -242,6 +242,10 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     newJoe.maxHitPoints should be === 14
   }
 
+  it should "increase the base attack roll on every even level gained" in {
+    false should be === true
+  }
+
   behavior of "modifier bonuses"
 
   it should "apply constitution modifier to hit points" in {
