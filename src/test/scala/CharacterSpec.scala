@@ -215,6 +215,15 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     newJoe.experience should be === 0
   }
 
+  it should "increase the character's hit points when the character levels from attacking" in {
+    val joe = new Character(experience = 990, abilities = new Abilities(constitution = 14))
+    val sam = new Character()
+
+    val (newJoe, newSam) = joe attacks(sam, 10)
+
+    newJoe.maxHitPoints should be === 14
+  }
+
   behavior of "modifier bonuses"
 
   it should "apply constitution modifier to hit points" in {

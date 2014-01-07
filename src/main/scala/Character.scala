@@ -43,7 +43,9 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
   }
 
   private def gainExperience(addExperience: Int): Character = {
-    new Character(name = name, alignment = alignment, baseHitPoints = baseHitPoints, abilities = abilities, damage = damage, experience = experience + addExperience)
+
+    val newHitPoints = baseHitPoints + 5 + asModifier(abilities.constitution)
+    new Character(name = name, alignment = alignment, baseHitPoints = newHitPoints, abilities = abilities, damage = damage, experience = experience + addExperience)
   }
 
   private def incursDamage(newDamage: Int): Character = {
