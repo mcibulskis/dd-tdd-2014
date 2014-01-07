@@ -55,6 +55,24 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     character.hitPoints should be === 15
   }
 
+  it should "know it is alive if its hit points are greater than 0" in {
+    val character = new Character("Joe", Evil, 19)
+
+    character.isAlive should be === true
+  }
+
+  it should "know it is dead if its hit points are 0" in {
+    val character = new Character("Joe", Evil, 0)
+
+    character.isAlive should be === false
+  }
+
+  it should "know it is dead if its hit points are less than 0" in {
+    val character = new Character("Joe", Evil, -5)
+
+    character.isAlive should be === false
+  }
+
   behavior of "attacking a character"
 
   it should "allow a character to attack another character and hit when roll greater than armor class" in {
@@ -76,5 +94,32 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val sam = new Character()
 
     joe canHit(sam, 10) should be === true
+  }
+
+  it should "reduce target's hit point by 1 when attack is successful" in {
+    val joe = new Character()
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 12)
+
+    newSam.hitPoints should be === 4
+  }
+
+  it should "not reduce the target's hit points when the attack is unsuccessful" in {
+    val joe = new Character()
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 9)
+
+    newSam.hitPoints should be === 5
+  }
+
+  it should "reduce the target's hit points by 2 when the attack is a critical hit of exactly 20" in {
+    val joe = new Character()
+    val sam = new Character()
+
+    val newSam = joe attacks(sam, 20)
+
+    newSam.hitPoints should be === 3
   }
 }
