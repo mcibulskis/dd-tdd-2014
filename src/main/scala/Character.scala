@@ -1,4 +1,4 @@
-class Character(val name: String = "Kristen", val alignment: Alignment = Good, val hitPoints: Int = 5) {
+class Character(val name: String = "Kristen", val alignment: Alignment = Good, val hitPoints: Int = 5, val abilities: Abilities = new Abilities()) {
   val armorClass = 10
 
   def isAlive(): Boolean = {
@@ -22,6 +22,6 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, v
   }
 
   private def incursDamage(damage: Int): Character = {
-    new Character(name, alignment, hitPoints - damage)
+    new Character(name, alignment, hitPoints - damage, abilities)
   }
 }
