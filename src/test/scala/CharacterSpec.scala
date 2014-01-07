@@ -36,4 +36,16 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
 
     character.alignment should be === Neutral
   }
+
+  it should "have a default armor class of 10" in {
+    val character = new Character()
+
+    character.armorClass should be === 10
+  }
+
+  it should "have default hit points of 5" in {
+    val character = new Character()
+
+    character.hitPoints should be === 5
+  }
 }
