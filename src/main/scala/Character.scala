@@ -1,7 +1,11 @@
 import scala.math._
 
 class Character(val name: String = "Kristen", val alignment: Alignment = Good, baseHitPoints: Int = 5, val abilities: Abilities = new Abilities(), damage: Int = 0) {
-  val armorClass = 10
+  val baseArmorClass = 10
+
+  def armorClass(): Int = {
+    max(baseArmorClass + asModifier(abilities.dexterity), 1)
+  }
 
   def hitPoints(): Int = {
     maxHitPoints() - damage

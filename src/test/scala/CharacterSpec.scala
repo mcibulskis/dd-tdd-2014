@@ -123,4 +123,12 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
 
     joe.maxHitPoints should be === 1
   }
+
+  it should "be able to get current armor class, including adjustment by dexterity modifier" in {
+    val joe = new Character(abilities = new Abilities(dexterity = 1))
+
+    joe.armorClass should be === 5
+  }
+
+
 }
