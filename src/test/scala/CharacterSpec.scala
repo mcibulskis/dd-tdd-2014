@@ -176,6 +176,15 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     newJoe.experience should be === 10
   }
 
+  it should "not increase the attacker's experience when the attack is unsuccessful" in {
+    val joe = new Character()
+    val sam = new Character()
+
+    val (newJoe, newSam) = joe attacks(sam, 5)
+
+    newJoe.experience should be === 0
+  }
+
   behavior of "modifier bonuses"
 
   it should "apply constitution modifier to hit points" in {
