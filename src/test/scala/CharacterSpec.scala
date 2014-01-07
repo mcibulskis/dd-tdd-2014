@@ -79,7 +79,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character()
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 10)
+    val (newJoe, newSam) = joe attacks(sam, 10)
     newSam.hitPoints should be === 4
   }
 
@@ -87,7 +87,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character()
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 12)
+    val (newJoe, newSam) = joe attacks(sam, 12)
 
     newSam.hitPoints should be === 4
   }
@@ -96,7 +96,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character()
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 9)
+    val (newJoe, newSam) = joe attacks(sam, 9)
 
     newSam.hitPoints should be === 5
   }
@@ -105,7 +105,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character()
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 20)
+    val (newJoe, newSam) = joe attacks(sam, 20)
 
     newSam.hitPoints should be === 3
   }
@@ -114,7 +114,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character(abilities = new Abilities(strength = 12))
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 10)
+    val (newJoe, newSam) = joe attacks(sam, 10)
 
     newSam.hitPoints should be === 3
   }
@@ -123,7 +123,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character(abilities = new Abilities(strength = 12))
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 9)
+    val (newJoe, newSam) = joe attacks(sam, 9)
 
     newSam.hitPoints should be === 3
   }
@@ -132,7 +132,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character(abilities = new Abilities(strength = 12))
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 20)
+    val (newJoe, newSam) = joe attacks(sam, 20)
 
     newSam.hitPoints should be === 1
   }
@@ -141,7 +141,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character(abilities = new Abilities(strength = 1))
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 15)
+    val (newJoe, newSam) = joe attacks(sam, 15)
 
     newSam.hitPoints should be === 4
   }
@@ -150,7 +150,7 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     val joe = new Character(abilities = new Abilities(strength = 1))
     val sam = new Character()
 
-    val newSam = joe attacks(sam, 20)
+    val (newJoe, newSam) = joe attacks(sam, 20)
 
     newSam.hitPoints should be === 4
   }

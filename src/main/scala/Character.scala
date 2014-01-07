@@ -21,7 +21,7 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
     hitPoints > 0
   }
 
-  def attacks(target: Character, roll: Roll20): Character = {
+  def attacks(target: Character, roll: Roll20): (Character, Character) = {
     def canHit(target: Character, roll: Roll20): Boolean = {
       (roll.roll + asModifier(abilities.strength)) >= target.armorClass
     }
@@ -33,8 +33,8 @@ class Character(val name: String = "Kristen", val alignment: Alignment = Good, b
       else max(1 + asModifier(abilities.strength), 1)
     }
 
-    if (canHit(target, roll)) target.incursDamage(calculateDamage(roll))
-    else target
+    if (canHit(target, roll)) (this, target.incursDamage(calculateDamage(roll)))
+    else (this, target)
   }
 
   private def incursDamage(newDamage: Int): Character = {
