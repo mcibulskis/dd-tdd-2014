@@ -85,6 +85,36 @@ class CharacterSpec extends FlatSpec with ShouldMatchers {
     character.experience should be === 15
   }
 
+  it should "have a default level of 1" in {
+    val character = new Character()
+
+    character.level should be === 1
+  }
+
+  it should "have a level of 2 when it has 1000 experience points" in {
+    val character = new Character(experience = 1000)
+
+    character.level should be === 2
+  }
+
+  it should "have a level of 1 when it has an experience level less than 1000" in {
+    val character = new Character(experience = 999)
+
+    character.level should be === 1
+  }
+
+  it should "have a level of 2 when it experience points greater than 1000 and less than 2000" in {
+    val character = new Character(experience = 1500)
+
+    character.level should be === 2
+  }
+
+  it should "have a level of 3 when it experience points greater than 1000 and less than 2000" in {
+    val character = new Character(experience = 2750)
+
+    character.level should be === 3
+  }
+
   behavior of "attacking a character"
 
   it should "allow a character to attack another character and hit when roll equal to armor class" in {

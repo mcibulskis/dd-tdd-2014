@@ -1,7 +1,12 @@
 import scala.math._
 
 class Character(val name: String = "Kristen", val alignment: Alignment = Good, baseHitPoints: Int = 5, val abilities: Abilities = new Abilities(), damage: Int = 0, val experience: Int = 0) {
-  val baseArmorClass = 10
+  private val baseArmorClass = 10
+  private val baseLevel = 1
+
+  def level(): Int = {
+    (experience / 1000) + baseLevel
+  }
 
   def armorClass(): Int = {
     baseArmorClass + asModifier(abilities.dexterity)
