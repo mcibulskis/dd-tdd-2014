@@ -1,8 +1,8 @@
 class Abilities {
-  val strength = Ability(1)
-  val dexterity = Ability(1)
-  val constitution = Ability(1)
-  val wisdom = Ability(1)
-  val intelligence = Ability(1)
-  val charisma = Ability(1)
+  val strength = Ability(10)
+  val dexterity = Ability(10)
+  val constitution = Ability(10)
+  val wisdom = Ability(10)
+  val intelligence = Ability(10)
+  val charisma = Ability(10)
 }
